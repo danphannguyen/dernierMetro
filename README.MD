@@ -19,5 +19,27 @@ En parrallèle vous pouvez vérifier dans votre console que les logs s'affichent
 - `GET / 404 4ms` 
 
 ## Étape 3
+Testing du swagger
+
+
+
+
+
+
+## Étape Bonus 1
+Dans votre .env vous pouvez spécifier de nouvelles variables, exemple : 
+`HEADWAY_MIN=5` Elle permettra de set l'intervale entre les horaires
+`LAST_WINDOW_START=12:45` Elle permettra de set l'heure de début 
+`SERVICE_END=1:15` Elle permettra de set l'heure de fin
+
+## Étape Bonus 2
+Lors de la requête à **/next-metro** vous pouvez ajouter un nombre d'horaire (max 5) sous la forme d'un query params "n" : 
+`curl -i http://localhost:3000/next-metro?station=arts-et-metiers&n=2`
+
+## Étape Bonus 3
+Selon les statiosn référencer dans le fichier `src/data/paris_metro_stations.json` des suggestions sont possible : 
+- `curl -i http://localhost:3000/next-metro?station=arts`
+- `curl -i http://localhost:3000/next-metro?station=ar`
+
 
 

@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
   res.on("finish", () => {
     const endTime = Date.now();
     const duration = endTime - startTime;
-    console.log(`${req.method} ${req.url} ${res.statusCode} ${duration}ms`)
+    console.log(`${req.method} ${req.originalUrl} ${res.statusCode} ${duration}ms`)
   })
 
   // Permet de ne pas bloquer la requête

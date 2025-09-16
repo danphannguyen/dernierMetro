@@ -20,6 +20,14 @@ function nextArrival(now = new Date(), n = 1) {
 	const lastWindow = new Date(now);
 	lastWindow.setHours(lastHour, lastMin, 0, 0);
 
+  // si end est avant ou égal à lastWindow, on considère que ça passe au lendemain
+  if (end <= lastWindow) {
+		end.setDate(end.getDate() + 1);
+	}
+
+  console.log(lastWindow)
+  console.log(end);
+
 	// Vérifier si le service est fermé
 	if (now > end) return { service: "closed", tz };
 

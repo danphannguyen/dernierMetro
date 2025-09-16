@@ -1,6 +1,8 @@
 services:
   api:
-    build: .
+    build:
+      context: ./api
+      dockerfile: Dockerfile
     ports:
       - "${PORT}:${PORT}"     #"hôte:conteneur"
     container_name: derniermetro-container

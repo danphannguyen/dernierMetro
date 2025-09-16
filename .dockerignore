@@ -1,0 +1,15 @@
+# Node modules
+node_modules
+npm-debug.log
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile*
+.dockerignore
+
+# OS / Editor
+.DS_Store
+.vscode

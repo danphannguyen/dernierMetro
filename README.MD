@@ -7,7 +7,7 @@ Storytelling et contexte (script)
 ## Étape 1
 Le server.js demarre sans erreur sur un port configurable. 
 1) Pour changer de port vous pouvez modifier la variable `PORT` dans le fichier .env
-2) Ensuite pour tester il vous suffit de lancer un `npm run start` et vérifier si à l'url `http://localhost:3000/` vous obtenez vien une erreur 404 (status:	"URL not found")
+2) Ensuite pour tester il vous suffit de lancer un `docker compose up` et vérifier si à l'url `http://localhost:3000/` vous obtenez vien une erreur 404 (status:	"URL not found")
 
 ## Étape 2
 Testing des différentes routes, executez les commandes `curl` suivantes **dans un nouveau terminal** : 

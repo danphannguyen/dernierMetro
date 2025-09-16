@@ -1,5 +1,5 @@
 function nextArrival(now = new Date(), n = 1) {
-	const tz = "Europe/Paris";
+	const tz = "Greenwich Mean Time (GMT)";
 	const toHM = (d) =>
 		String(d.getHours()).padStart(2, "0") +
 		":" +
@@ -25,9 +25,6 @@ function nextArrival(now = new Date(), n = 1) {
 		end.setDate(end.getDate() + 1);
 	}
 
-  console.log(lastWindow)
-  console.log(end);
-
 	// Vérifier si le service est fermé
 	if (now > end) return { service: "closed", tz };
 
@@ -40,7 +37,7 @@ function nextArrival(now = new Date(), n = 1) {
 
 		arrivals.push({
 			time: toHM(nextTime),
-			isLast: nextTime >= lastWindow,
+			isLast: new Date(now.getTime() + headwayMin * (i+1) * 60 * 1000) >= end,
 		});
 	}
 

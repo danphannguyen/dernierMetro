@@ -24,21 +24,19 @@ function nextArrival(now = new Date(), n = 1) {
 	if (now > end) return { service: "closed", tz };
 
 	// Générer les n prochains horaires
-	const prochainPassages = [];
-	let isLast = false;
+	const arrivals = [];
 
 	for (let i = 1; i <= n; i++) {
 		const nextTime = new Date(now.getTime() + headwayMin * i * 60 * 1000);
 		if (nextTime > end) break;
 
-		if (nextTime >= lastWindow) {
-			isLast = true;
-		}
-
-		prochainPassages.push(toHM(nextTime));
+		arrivals.push({
+			time: toHM(nextTime),
+			isLast: nextTime >= lastWindow,
+		});
 	}
 
-	return { prochainPassages, isLast, tz };
+	return { arrivals, tz };
 }
 
 module.exports = { nextArrival };

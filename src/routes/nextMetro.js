@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { nextArrival } = require("../utils/metro");
+const { findStationExact, suggestStations } = require("../utils/searchStations");
 
 router.get("/", (req, res) => {
-	const station = req.query.station;
+	const station = (req.query.station).toLowerCase();
 	const n = Math.min(parseInt(req.query.n, 10) || 1, 5);
 
 	if (!station) {
@@ -13,6 +14,17 @@ router.get("/", (req, res) => {
 		});
 	}
 
+  console.log(station);
+
+	const stationObj = findStationExact(station);
+
+	if (!stationObj) {
+		const suggestions = suggestStations(station);
+		return res.status(404).json({
+			message: "Station not found",
+			suggestions,
+		});
+	}
 	const arrival = nextArrival(undefined, n);
 
 	if (arrival.service === "closed") {
@@ -20,18 +32,18 @@ router.get("/", (req, res) => {
 			`[INFO] Requested next metro after service hours for station "${station}"`
 		);
 		return res.status(200).json({
-			station,
-			ligne: "M7",
+			station: stationObj.station,
+			ligne: stationObj.lines.join(","),
 			message: "Service closed",
 			timeZone: arrival.tz,
 		});
 	}
 
 	return res.status(200).json({
-		station,
-		ligne: "M7",
-		prochainPassages: arrival.prochainPassages,
-		isLast: arrival.isLast,
+		station: stationObj.station,
+		ligne: stationObj.lines.join(","),
+		arrivals: arrival.arrivals,
+    timeZone: arrival.tz,
 	});
 });
 

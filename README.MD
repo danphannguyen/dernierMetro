@@ -12,7 +12,7 @@ Le server.js demarre sans erreur sur un port configurable.
 ## Étape 2
 Testing des différentes routes, executez les commandes `curl` suivantes **dans un nouveau terminal** : 
 - **/health** : `curl -i http://localhost:3000/health` 
-- **/next-metro** : `curl -i http://localhost:3000/next-metro?station=Chatelet`
+- **/next-metro** : `curl -i http://localhost:3000/next-metro?station=arts-et-metiers`
 
 En parrallèle vous pouvez vérifier dans votre console que les logs s'affichent bel et bien, exemple : 
 - `GET /health 200 25ms`

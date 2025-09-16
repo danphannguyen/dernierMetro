@@ -2,7 +2,7 @@ services:
   api:
     build: .
     ports:
-      - "${PORT}:${PORT}"
+      - "${PORT}:${PORT}"     #"hôte:conteneur"
     container_name: derniermetro-container
     env_file:
       - .env

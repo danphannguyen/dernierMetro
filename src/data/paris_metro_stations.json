@@ -1,0 +1,92 @@
+[
+  {
+    "station": "Abbesses",
+    "slug": "abbesses",
+    "lines": ["12"]
+  },
+  {
+    "station": "Alésia",
+    "slug": "alesia",
+    "lines": ["4"]
+  },
+  {
+    "station": "Anvers",
+    "slug": "anvers",
+    "lines": ["2"]
+  },
+  {
+    "station": "Argentine",
+    "slug": "argentine",
+    "lines": ["1"]
+  },
+  {
+    "station": "Arts et Métiers",
+    "slug": "arts-et-metiers",
+    "lines": ["3", "11"]
+  },
+  {
+    "station": "Assemblée Nationale",
+    "slug": "assemblee-nationale",
+    "lines": ["12"]
+  },
+  {
+    "station": "Pyramides",
+    "slug": "pyramides",
+    "lines": ["7", "14"]
+  },
+  {
+    "station": "Porte de Clignancourt",
+    "slug": "porte-de-clignancourt",
+    "lines": ["13"]
+  },
+  {
+    "station": "Porte de la Chapelle",
+    "slug": "porte-de-la-chapelle",
+    "lines": ["12"]
+  },
+  {
+    "station": "Porte de Vincennes",
+    "slug": "porte-de-vincennes",
+    "lines": ["1"]
+  },
+  {
+    "station": "Porte Maillot",
+    "slug": "porte-maillot",
+    "lines": ["1"]
+  },
+  {
+    "station": "Porte Saint-Denis",
+    "slug": "porte-saint-denis",
+    "lines": ["4"]
+  },
+  {
+    "station": "Porte Saint-Martin",
+    "slug": "porte-saint-martin",
+    "lines": ["3"]
+  },
+  {
+    "station": "Porte de la Villette",
+    "slug": "porte-de-la-villette",
+    "lines": ["7"]
+  },
+  {
+    "station": "Porte d'Orléans",
+    "slug": "porte-d-orleans",
+    "lines": ["4"]
+  },
+  {
+    "station": "Porte d'Aubervilliers",
+    "slug": "porte-d-aubervilliers",
+    "lines": ["12"]
+  },
+  {
+    "station": "Porte de Montreuil",
+    "slug": "porte-de-montreuil",
+    "lines": ["9"]
+  },
+  {
+    "station": "Porte de Saint-Ouen",
+    "slug": "porte-de-saint-ouen",
+    "lines": ["13"]
+  }
+]

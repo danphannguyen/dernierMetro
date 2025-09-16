@@ -20,6 +20,6 @@ app.use("/next-metro", require("./src/routes/nextMetro"));
 // Need to be after all routes (default case)
 app.use(notFound)
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`)
-})
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

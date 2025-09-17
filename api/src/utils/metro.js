@@ -1,5 +1,5 @@
-function nextArrival(now = new Date(), n = 1) {
-	const tz = "Greenwich Mean Time (GMT)";
+function nextArrival(now = new DateTime.now().setZone("Europe/Paris"), n = 1) {
+	const tz = "Europe/Paris";
 	const toHM = (d) =>
 		String(d.getHours()).padStart(2, "0") +
 		":" +

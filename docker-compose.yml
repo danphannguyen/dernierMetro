@@ -19,11 +19,12 @@ services:
     environment:
       - SWAGGER_JSON=/openapi/openapi.yaml
     volumes:
-      - ./openapi:/usr/share/nginx/html/openapi:ro
+      - ./openapi/openapi.yaml:/openapi/openapi.yaml:ro
     ports:
       - "8080:8080"
     depends_on:
       - api
+
 
   postgresql:
     image: postgres:16-alpine

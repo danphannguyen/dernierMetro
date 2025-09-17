@@ -13,3 +13,38 @@ services:
       - HEADWAY_MIN=${HEADWAY_MIN}
       - LAST_WINDOW_START=${LAST_WINDOW_START}
       - SERVICE_END=${SERVICE_END}
+
+  swagger:
+    image: swaggerapi/swagger-ui:v5.0.0
+    environment:
+      - SWAGGER_JSON=/openapi/openapi.yaml
+    volumes:
+      - ./openapi:/usr/share/nginx/html/openapi:ro
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+
+  postgresql:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-derniermetro}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:5
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgresql
+
+volumes:
+  postgres_data:
+  

@@ -20,6 +20,24 @@ En parrallèle vous pouvez vérifier dans votre console que les logs s'affichent
 
 ## Étape 3
 Testing du swagger
+Vous pouvez vous rendre sur `http://localhost:8080/` et vous verez l'interface de swagger UI
+
+
+## Étape 4
+Rendez vous sur `http://localhost:8081/` pour voir l'interface `adminer` qui sera votre interface pour gérer votre BDD PostgreSQL à l'instar d'un PHPMyAdmin.
+
+Système	: `PostgreSQL`
+Serveur	: `postgresql`
+Utilisateur	: à définir et réutiliser dans votre .env via exemple -> `POSTGRES_USER=myuser`
+Mot de passe : à définir et réutiliser dans votre .env via exemple -> `POSTGRES_PASSWORD=supersecret`
+Base de données	: à définir et réutiliser dans votre .env via exemple -> `POSTGRES_DB=derniermetro`
+
+
+
+
+
+
+
 
 
 

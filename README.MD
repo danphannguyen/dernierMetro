@@ -6,7 +6,7 @@ Storytelling et contexte (script)
 
 ## Environnement
 Le server.js demarre sans erreur sur un port configurable. 
-1) Pour changer de port vous pouvez modifier la variable `PORT` dans le fichier .env
+1) Pour changer de port vous pouvez modifier la variable `PORT` dans le fichier .env (n'oubliez pas de changer aussi le port dans le openapi.yaml)
 2) Ensuite pour tester il vous suffit de lancer un `docker compose up` et vérifier si à l'url `http://localhost:3000/` vous obtenez vien une erreur 404 (status:	"URL not found")
 
 ## API

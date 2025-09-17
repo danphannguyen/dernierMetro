@@ -6,6 +6,8 @@ const pool = new Pool({
   user: process.env.POSTGRES_USER || "postgres",
   password: process.env.POSTGRES_PASSWORD || "postgres",
   database: process.env.POSTGRES_DB || "derniermetro",
+  max: 5,
+  idleTimeoutMillis: 100,
 });
 
 pool.on("connect", () => {

@@ -56,9 +56,78 @@ paths:
                   error:
                     type: string
 
-  /:
+  /last-metro:
     get:
-      summary: Prochain passage de métro
+      summary: Heure du dernier métro pour une station donnée
+      description: >
+        Retourne l'heure du dernier métro pour la station passée en query param.
+        La recherche est insensible à la casse.
+      parameters:
+        - in: query
+          name: station
+          schema:
+            type: string
+          required: true
+          description: Nom exact de la station (ex. "Châtelet")
+      responses:
+        '200':
+          description: Informations sur le dernier métro
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  station:
+                    type: string
+                  lastMetro:
+                    type: string
+                    example: "00:47"
+                  line:
+                    type: string
+                    example: "M1"
+                  tz:
+                    type: string
+                    example: "Europe/Paris"
+        '400':
+          description: Paramètre `station` manquant
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  error:
+                    type: string
+        '404':
+          description: Station non trouvée
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Station not found
+        '500':
+          description: Erreur interne du serveur
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  error:
+                    type: string
+
+  /next-metro:
+    get:
+      summary: Prochain passage de métro pour une station donnée
+      description: >
+        Retourne les prochains passages pour la station passée en query param.  
+        Le paramètre `n` permet de limiter le nombre de prochains passages (max 5).  
+        Si le service est fermé, retourne un message "Service closed".
       parameters:
         - in: query
           name: station
@@ -73,10 +142,10 @@ paths:
             minimum: 1
             maximum: 5
           required: false
-          description: Nombre de prochains passages (max 5)
+          description: Nombre de prochains passages (min 1 / max 5)
       responses:
         '200':
-          description: Informations sur le prochain métro
+          description: Informations sur les prochains passages
           content:
             application/json:
               schema:
@@ -86,16 +155,18 @@ paths:
                     type: string
                   ligne:
                     type: string
-                    description: Lignes desservant la station
                   arrivals:
                     type: array
                     items:
                       type: string
-                    description: Horaires des prochains passages
+                    description: Horaires des prochains passages (ex. ["12:34", "12:37"])
+                  message:
+                    type: string
+                    description: Message facultatif (ex. "Service closed")
                   timeZone:
                     type: string
         '400':
-          description: Paramètre manquant
+          description: Paramètre `station` manquant
           content:
             application/json:
               schema:

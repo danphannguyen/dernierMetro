@@ -3,7 +3,7 @@ const stations = require("../data/paris_metro_stations.json");
 // Renvoie l'objet exact si trouvé, sinon null
 function findStationExact(name) {
 	return (
-		stations.find((s) => s.slug.toLowerCase() === name.toLowerCase()) || null
+		stations.find((s) => s.station.toLowerCase() === name.toLowerCase()) || null
 	);
 }
 

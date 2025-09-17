@@ -18,6 +18,7 @@ app.use(cors);
 // === Routes ===
 app.use("/health", require("./src/routes/health"));
 app.use("/next-metro", require("./src/routes/nextMetro"));
+app.use("/last-metro", require("./src/routes/lastMetro"));
 
 // Need to be after all routes (default case)
 app.use(notFound)

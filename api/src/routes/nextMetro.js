@@ -2,10 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { nextArrival } = require("../utils/metro");
 const { findStationExact, suggestStations } = require("../utils/searchStations");
-const pool = require("../utils/db");
 
 router.get("/", async (req, res) => {
-	const station = (req.query.station).toLowerCase();
+	const station = req.query.station;
 	const n = Math.min(parseInt(req.query.n, 10) || 1, 5);
 
 	if (!station) {

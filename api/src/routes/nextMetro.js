@@ -31,9 +31,10 @@ router.get("/", async (req, res) => {
 		);
 		return res.status(200).json({
 			station: stationObj.station,
+			arrivals: arrival.arrivals,
 			ligne: stationObj.lines.join(","),
 			message: "Service closed",
-			timeZone: arrival.tz,
+			tz: arrival.tz,
 		});
 	}
 
@@ -41,7 +42,7 @@ router.get("/", async (req, res) => {
 		station: stationObj.station,
 		ligne: stationObj.lines.join(","),
 		arrivals: arrival.arrivals,
-    timeZone: arrival.tz,
+    tz: arrival.tz,
 	});
 });
 

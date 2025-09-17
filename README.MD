@@ -33,6 +33,10 @@ Utilisateur	: à définir et réutiliser dans votre .env via exemple -> `POSTGRE
 Mot de passe : à définir et réutiliser dans votre .env via exemple -> `POSTGRES_PASSWORD=supersecret`
 Base de données	: à définir et réutiliser dans votre .env via exemple -> `POSTGRES_DB=derniermetro`
 
+## Test unitaire et d'intégration
+Pour cela après avoir lancé vos container il suffit d'éxecuter la commande suivante : 
+`docker compose exec api npm run test`
+
 
 
 

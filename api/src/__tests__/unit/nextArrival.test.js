@@ -1,4 +1,4 @@
-const { nextArrival } = require("../utils/metro");
+const { nextArrival } = require("../../utils/metro");
 
 describe("nextArrival util function", () => {
 	const RealDate = Date;

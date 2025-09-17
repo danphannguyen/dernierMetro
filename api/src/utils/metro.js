@@ -12,6 +12,7 @@ function nextArrival(now = new Date(), n = 1) {
 	const headwayMin = process.env.HEADWAY_MIN
 		? parseInt(process.env.HEADWAY_MIN, 10)
 		: 3;
+  if (!headwayMin || headwayMin <= 0) return { arrivals: [], tz };
 
 	const lastWindowStr = process.env.LAST_WINDOW_START || "00:45";
 	const serviceEndStr = process.env.SERVICE_END || "01:15";
@@ -32,7 +33,7 @@ function nextArrival(now = new Date(), n = 1) {
 	}
 
 	// Vérifier si le service est fermé
-	if (now > end) return { service: "closed", tz };
+	if (now > end) return { arrivals: [], tz, service: "closed" };
 
 	// Générer les n prochains horaires
 	const arrivals = [];

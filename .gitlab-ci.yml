@@ -1,0 +1,45 @@
+stages:
+  - lint
+  - test
+  - docker-build
+
+# Cache npm pour accélérer les builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - .npm
+
+# Stage de lint
+lint:
+  stage: lint
+  image: node:20
+  script:
+    - cd api
+    - npm ci
+    - npm run lint
+  only:
+    - merge_requests
+    - pushes
+
+# Stage de tests unitaires et d'intégration
+test:
+  stage: test
+  image: node:20
+  script:
+    - cd api
+    - npm ci
+    - npm test
+  only:
+    - merge_requests
+    - pushes
+
+docker-build:
+  stage: docker-build
+  image: docker:24.0.2
+  services:
+    - docker:24-dind
+  script:
+    - docker build -t mon-projet:${CI_COMMIT_SHA} .
+  only:
+    - main

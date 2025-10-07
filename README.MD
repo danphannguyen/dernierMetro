@@ -63,7 +63,8 @@ SERVICE_END=15:25
 ```
 
 ## Test unitaire et d'intégration
-Pour cela après avoir lancé vos container il suffit d'éxecuter la commande suivante : 
+Pour cela après avoir lancé vos container via `docker compose up`,
+il suffit d'éxecuter la commande suivante : 
 `docker compose exec api npm run test`
 
 

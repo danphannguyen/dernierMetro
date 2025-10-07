@@ -8,6 +8,7 @@ const pool = new Pool({
   database: process.env.POSTGRES_DB || "derniermetro",
   max: 5,
   idleTimeoutMillis: 100,
+  client_encoding: "UTF8",
 });
 
 pool.on("connect", () => {

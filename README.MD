@@ -13,8 +13,15 @@ Le server.js demarre sans erreur sur un port configurable.
 Testing des différentes routes, executez les commandes `curl` suivantes **dans un nouveau terminal** : 
 - **/health/api** : `curl -i http://localhost:3000/health/api` 
 - **/health/db** : `curl -i http://localhost:3000/health/db` 
-- **/next-metro** : `curl -i http://localhost:3000/next-metro?station=arts-et-metiers`
-- **/next-metro** : `curl -i http://localhost:3000/next-metro?station=arts-et-metiers&n=3`
+- **/next-metro** : `curl -i "http://localhost:3000/next-metro?station=arts-et-metiers"`
+
+Défi B + C — [Challenge bonus](https://teams.microsoft.com/l/message/19:meeting_ZjgyYjI4ODgtYjYzOS00MTA5LWE0MzYtZmVlZTRkMDk1NmU0@thread.v2/1758025194336?context=%7B%22contextType%22%3A%22chat%22%7D)
+- **/next-metro** :
+  - `curl -i "http://localhost:3000/next-metro?station=arts-et-metiers&n=3"`
+  - `curl -i "http://localhost:3000/next-metro?station=ARTS%20ET%20METIERS&n=3"`
+  ou directement dans votre navigateur (le curl ne supporte pas bien les caractères avec des accents) : 
+  - `http://localhost:3000/next-metro?station=Arts%20et%20Métiers&n=3`
+  - `http://localhost:3000/next-metro?station=arts et metiers&n=3`
 
 En parrallèle vous pouvez vérifier dans votre console que les logs s'affichent bel et bien, exemple : 
 - `GET /health/api 200 25ms`
@@ -32,6 +39,28 @@ Serveur	: `db` (nom de votre service postgresql dans le docker-compose)
 Utilisateur	: à définir et réutiliser dans votre .env via exemple -> `POSTGRES_USER=myuser`
 Mot de passe : à définir et réutiliser dans votre .env via exemple -> `POSTGRES_PASSWORD=supersecret`
 Base de données	: à définir et réutiliser dans votre .env via exemple -> `POSTGRES_DB=derniermetro`
+
+## Database 
+Lister les tables : 
+```bash
+docker compose exec db psql -U myuser  -d derniermetro -c "\dt"
+```
+
+Vérifier les stationss : 
+```bash
+docker compose exec postgres psql -U app -d dernier_metro -c "SELECT * FROM stations;"
+```
+
+⚠️ Les tables :
+- `headways(id, station_id, minutes>0)` : Fréquence de passage (en minutes)
+- `last_metro(id, station_id UNIQUE, departed_at TIME)` : Heure de départ du dernier métro
+
+Sont remplacée par ces variables dans le .env (Défi A — [Challenge bonus](https://teams.microsoft.com/l/message/19:meeting_ZjgyYjI4ODgtYjYzOS00MTA5LWE0MzYtZmVlZTRkMDk1NmU0@thread.v2/1758025194336?context=%7B%22contextType%22%3A%22chat%22%7D)):
+```
+HEADWAY_MIN=5
+LAST_WINDOW_START=12:45
+SERVICE_END=15:25
+```
 
 ## Test unitaire et d'intégration
 Pour cela après avoir lancé vos container il suffit d'éxecuter la commande suivante : 

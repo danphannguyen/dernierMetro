@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../utils/db");
+const { toSlug } = require("../utils/searchStations");
 
 router.get("/", async (req, res) => {
 	const station = req.query.station;
@@ -27,9 +28,10 @@ router.get("/", async (req, res) => {
 		const defaults = configMap["metro.defaults"];
 		const stations = configMap["metro.last"];
 
-		const stationKey = Object.keys(stations).find(
-			(name) => name.toLowerCase() === station.toLowerCase()
-		);
+			// Match the station by slug so the route accepts human-readable names or slugs
+			const stationKey = Object.keys(stations).find((name) => {
+				return toSlug(name) === toSlug(station);
+			});
 
 		if (!stationKey) {
 			return res.status(404).json({
